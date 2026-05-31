@@ -494,7 +494,7 @@ Update `world.tscn` to:
 
 [sub_resource type="NavigationMesh" id="NavMesh_1"]
 vertices = PackedVector3Array(-1, 0.1, -1, 41, 0.1, -1, 41, 0.1, 41, -1, 0.1, 41)
-polygons = [PackedInt32Array(0, 1, 2), PackedInt32Array(0, 2, 3)]
+polygons = [PackedInt32Array(0, 2, 1), PackedInt32Array(0, 3, 2)]
 agent_radius = 0.3
 agent_height = 1.0
 cell_size = 0.25
