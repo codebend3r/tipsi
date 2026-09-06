@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/ground.gd" id="1_ground"]
+[ext_resource type="PackedScene" path="res://scenes/bug.tscn" id="2_bug"]
+[ext_resource type="Script" path="res://scripts/iso_camera.gd" id="3_iso_camera"]
+
+[sub_resource type="NavigationMesh" id="NavMesh_1"]
+vertices = PackedVector3Array(-1, 0.1, -1, 41, 0.1, -1, 41, 0.1, 41, -1, 0.1, 41)
+polygons = [PackedInt32Array(0, 2, 1), PackedInt32Array(0, 3, 2)]
+agent_radius = 0.3
+agent_height = 1.0
+cell_size = 0.25
+cell_height = 0.25
+
+[node name="World" type="Node3D"]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavMesh_1")
+
+[node name="Ground" type="Node3D" parent="NavigationRegion3D"]
+script = ExtResource("1_ground")
+
+[node name="Bug" parent="." instance=ExtResource("2_bug")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 20)
+
+[node name="IsoCamera" type="Camera3D" parent="."]
+script = ExtResource("3_iso_camera")
+target_path = NodePath("../Bug")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707, 0.707, 0, -0.707, 0.707, 0, 10, 0)
